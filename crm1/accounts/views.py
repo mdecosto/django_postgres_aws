@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 from .models import *
+from .tasks import test_funk
 
 
 def home(request):
@@ -31,3 +32,7 @@ def customer(request, pk_test):
     
     context = {'customer':customer, 'orders':orders, 'order_count':order_count}
     return render(request, 'accounts/customer.html', context)
+
+def test(request):
+    test_funk.delay()
+    return HttpResponse('DONE')

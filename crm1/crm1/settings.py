@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'accounts',
+    'django_celery_results',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +79,7 @@ WSGI_APPLICATION = 'crm1.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
+    # # local
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': 'DEMO_TEST',
@@ -86,10 +89,20 @@ DATABASES = {
     #     'PORT': '5432',
     # }
     
+    # # aws rds
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'demo_1',
+        'USER': 'awspostgres',
+        'PASSWORD': 'q8m^.mRR',
+        'HOST': 'database-1.cauege7tqa7u.ap-northeast-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
+    
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 
@@ -136,3 +149,15 @@ MEDIA_URL = '/images/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# CELERY SETTINGS
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Manila'
+
+CELERY_RESULT_BACKEND = 'django-db'
+
+# CELERY BEAT SETTINGS
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'

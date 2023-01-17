@@ -1,0 +1,30 @@
+dumping from aws(rds) via terminal
+
+  syntax: pg_dump -h <public dns> -U <my username aws> -f <new dump file location and name.sql local> <name of my database to be copied aws>
+
+  sample: pg_dump -h database-1.cauege7tqa7u.ap-northeast-1.rds.amazonaws.com -U awspostgres -f /tmp/demo_1.sql demo_1
+
+access local db and delete and create new db to restore downloaded db
+
+  access local db
+  syntax: psql -U <local username> -p <port>
+  sample: psql -U postgres -p 5432
+
+  access rds db
+  syntax: psql --host=<db end point rds> --port=5432 --username=<aws postgress username> --password --dbname=<database name>
+  sample: psql --host=database-1.cauege7tqa7u.ap-northeast-1.rds.amazonaws.com --port=5432 --username=awspostgres --password --dbname=demo_1
+
+  delete current db
+  syntax: DROP DATABASE <database name>
+  sample: DROP DATABASE DEMO_TEST
+
+  create new db same with the old name
+  syntax: CREATE DATABASE <database old name>
+  sample: CREATE DATABASE DEMO_TEST
+
+  exit local db
+  sample:\q
+
+restore downloaded dump file to the newly created db
+
+  syntax: psql -U <postgresql username local> -d <new created database name> -f <downloaded dump file location and name>

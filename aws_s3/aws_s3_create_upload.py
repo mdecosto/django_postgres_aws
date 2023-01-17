@@ -45,9 +45,9 @@ s3_resource = boto3.resource('s3')
 
 # create bucket name and file name
 first_bucket_name, first_response = create_bucket(
-  bucket_prefix='secondpythonbucket',
+  bucket_prefix='123pythonbucket',
   s3_connection=s3_resource.meta.client)
-first_file_name = create_temp_file(300, 'secondfile.txt', 'g')
+first_file_name = create_temp_file(300, '123file.txt', 'e')
 
 first_bucket = s3_resource.Bucket(name=first_bucket_name)
 first_object = s3_resource.Object(bucket_name=first_bucket_name, key=first_file_name)
