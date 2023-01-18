@@ -3,6 +3,7 @@ from django.http import HttpResponse
 # Create your views here.
 from .models import *
 from .tasks import test_funk
+from send_mail_app.tasks import send_mail_func
 
 
 def home(request):
@@ -36,3 +37,7 @@ def customer(request, pk_test):
 def test(request):
     test_funk.delay()
     return HttpResponse('DONE')
+
+def send_mail_to_all(request):
+    send_mail_func.delay()
+    return HttpResponse("Sent")

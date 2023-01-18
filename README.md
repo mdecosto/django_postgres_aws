@@ -1,4 +1,3 @@
-
 run virtual env:
 
     source djangoceleryenv/bin/activate
