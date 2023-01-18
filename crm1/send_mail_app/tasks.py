@@ -5,6 +5,7 @@ from crm1 import settings
 
 @shared_task(bind=True)
 def send_mail_func(self):
+  '''a task that will send email to all of users email'''
   users = get_user_model().objects.all()
   for user in users:
     mail_subject = "Hi! Celery Testing"

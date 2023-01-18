@@ -1,9 +1,11 @@
 from celery import shared_task
 
 @shared_task(bind=True)
-def test_funk(self):
+def test_func(self):
   #operations
+  print('start')
   for i in range(10):
     print(i)
+  print('end')
   return "Done"
 

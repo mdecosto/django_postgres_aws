@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'accounts',
+    'send_mail_app',
+    'aws_backup_and_restore',
     'django_celery_results',
     'django_celery_beat',
 ]

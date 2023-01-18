@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 from .models import *
-from .tasks import test_funk
+from .tasks import test_func
 from send_mail_app.tasks import send_mail_func
+from aws_backup_and_restore.tasks import backup_aws_func
 
 
 def home(request):
@@ -35,9 +36,14 @@ def customer(request, pk_test):
     return render(request, 'accounts/customer.html', context)
 
 def test(request):
-    test_funk.delay()
+    test_func.delay()
     return HttpResponse('DONE')
 
 def send_mail_to_all(request):
     send_mail_func.delay()
     return HttpResponse("Sent")
+
+def backup_database(request):
+    backup_aws_func.delay()
+    return HttpResponse("Done")
+    
