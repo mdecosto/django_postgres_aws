@@ -1,3 +1,15 @@
+setup .pgpass to homedirectory  cd ~
+
+syntax: hostname:port:database:username:password
+sample: database-1.cauege7tqa7u.ap-northeast-1.rds.amazonaws.com:5432:demo_1:awspostgres:q8m^.mRR
+
+need to allow read password by entering this command to homedirectory cd ~
+
+sample: chmod 0600 ~/.pgpass
+
+
+
+
 dumping from aws(rds) via terminal
 
   syntax: pg_dump -h <public dns> -U <my username aws> -f <new dump file location and name.sql local> <name of my database to be copied aws>
@@ -28,3 +40,4 @@ access local db and delete and create new db to restore downloaded db
 restore downloaded dump file to the newly created db
 
   syntax: psql -U <postgresql username local> -d <new created database name> -f <downloaded dump file location and name>
+  sample: psql -h database-1.cauege7tqa7u.ap-northeast-1.rds.amazonaws.com -U awspostgres -d demo_1 -f /tmp/demo_1.sql
