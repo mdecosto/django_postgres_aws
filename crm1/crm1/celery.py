@@ -26,9 +26,9 @@ app.conf.beat_schedule = {
   
   
   # peroidic task
-  'backup-data-base-every-5-mins': {
+  'backup-data-base-every-0000': {
     'task': 'aws_backup_and_restore.tasks.backup_aws_func',
-    'schedule': 300.0, # by seconds
+    'schedule': crontab(hour=00, minute=00),
     # 'args': (2,) # if needed args
   }
 }

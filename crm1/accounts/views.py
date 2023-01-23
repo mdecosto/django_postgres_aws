@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from .models import *
 from .tasks import test_func
 from send_mail_app.tasks import send_mail_func
-from aws_backup_and_restore.tasks import backup_aws_func
 
 
 def home(request):
@@ -42,8 +41,4 @@ def test(request):
 def send_mail_to_all(request):
     send_mail_func.delay()
     return HttpResponse("Sent")
-
-def backup_database(request):
-    backup_aws_func.delay()
-    return HttpResponse("Done")
     
