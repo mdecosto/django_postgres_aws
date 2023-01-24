@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'aws_backup_and_restore',
     'django_celery_results',
     'django_celery_beat',
+    
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
